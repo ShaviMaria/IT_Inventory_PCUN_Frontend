@@ -22,24 +22,27 @@ const Login = () => {
         console.log(value.buttonPushed);
     }
     return(
-        <div className='login-container'>
-            <h1>Login</h1>
-            <div>
-                <h2>Bienvenido</h2>
+        <div>
+            <div className='login-container'>
+                <h1 className='login-tittle'>Login</h1>
+                <div className='login-box'>
+                    <h2>Bienvenido</h2>
 
-                <div>
                     <div>
-                        <label>Usuario</label>
-                        <input name='user' value={value.user} onChange={handleChange} ref={inputName}/>
+                        <div>
+                            <label className='label'>Usuario</label>
+                            <input name='user' value={value.user} onChange={handleChange} ref={inputName}/>
+                        </div>
+                        <div>
+                            <label className='label'>Contraseña</label>
+                            <input name='password' value={value.password} onChange={handleChange} ref={inputPassword}/>
+                            {value.buttonPushed && value.password.length === 0 ? <p className='warning'>Debes ingresar una contraseña</p> : <span></span>}
+                        </div>
+                        <input type='submit' value='Iniciar Sesión' onClick={startSesion}/>
                     </div>
-                    <div>
-                        <label>Contraseña</label>
-                        <input name='password' value={value.password} onChange={handleChange} ref={inputPassword}/>
-                        {value.buttonPushed && value.password.length === 0 ? <p>Debes ingresar una contraseña</p> : <span></span>}
-                    </div>
-                    <input type='submit' value='Iniciar Sesión' onClick={startSesion}/>
                 </div>
             </div>
+
         </div>
     )
 }
