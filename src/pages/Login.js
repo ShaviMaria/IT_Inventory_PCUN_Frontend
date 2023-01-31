@@ -12,8 +12,6 @@ const Login = () => {
             ...value,
             [e.target.name]: e.target.value
         });
-
-        console.log(value);
     }
 
     const startSesion = () => {
@@ -26,7 +24,6 @@ const Login = () => {
     return(
         <div>
             <h1>Login</h1>
-
             <div>
                 <h2>Bienvenido</h2>
 
@@ -38,7 +35,6 @@ const Login = () => {
                     <div>
                         <label>Contraseña</label>
                         <input name='password' value={value.password} onChange={handleChange} ref={inputPassword}/>
-                        {console.log(`Longitud de la cadena: ${value.password.length}`)}
                         {value.buttonPushed && value.password.length === 0 ? <p>Debes ingresar una contraseña</p> : <span></span>}
                     </div>
                     <input type='submit' value='Iniciar Sesión' onClick={startSesion}/>
