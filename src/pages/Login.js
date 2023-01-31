@@ -22,7 +22,7 @@ const Login = () => {
         console.log(value.buttonPushed);
     }
     return(
-        <div>
+        <div className='login-container'>
             <h1>Login</h1>
             <div>
                 <h2>Bienvenido</h2>
