@@ -1,26 +1,13 @@
 import { useState, useRef } from 'react';
+import useLoginForm from '../hooks/useLoginForm';
 import Input from '../components/Input';
 import Field from '../components/Field';
 import TextError from '../components/TextError';
 import '../css/Login.css';
 
 const Login = () => {
-    const [ value, setValue ] = useState({ user: '', password: '', buttonPushed: false });
+    const [ value, handleChange, startSesion ] = useLoginForm({ user: '', password: '', buttonPushed: false });
 
-    const handleChange = e => {
-        setValue({
-            ...value,
-            [e.target.name]: e.target.value
-        });
-    }
-
-    const startSesion = () => {
-        setValue({
-            ...value,
-            ['buttonPushed']: true
-        });
-        console.log(value.buttonPushed);
-    }
     return(
         <div>
             <div className='login-container'>
@@ -32,17 +19,19 @@ const Login = () => {
                         <Field
                         name='user'
                         value={value.user}
-                        onChange={handleChange}>
+                        onChange={handleChange}
+                        >
                             Usuario
                         </Field> 
 
                         <Field
                         name='password'
                         value={value.password}
-                        onChange={handleChange}>
+                        onChange={handleChange}
+                        >
                             Contraseña
                         </Field>
-                        {value.buttonPushed && value.password.length === 0 ? <TextError>Debes ingresar una contraseña</TextError> : <span></span>}
+                        {value.buttonPushed && value.password.length === 0 ? <TextError>Debes ingresar una contraseña</TextError> : console.log(value.password.length)}
                         <Input type='submit' value='Iniciar Sesión' onClick={startSesion}/>
                     </div>
                 </div>
