@@ -1,11 +1,11 @@
 import { useState, useRef } from 'react';
+import Input from '../components/Input';
+import Field from '../components/Field';
+import TextError from '../components/TextError';
 import '../css/Login.css';
 
 const Login = () => {
     const [ value, setValue ] = useState({ user: '', password: '', buttonPushed: false });
-    const inputName = useRef();
-    const inputPassword = useRef();
-
 
     const handleChange = e => {
         setValue({
@@ -29,16 +29,21 @@ const Login = () => {
                     <h2>Bienvenido</h2>
 
                     <div>
-                        <div>
-                            <label className='label'>Usuario</label>
-                            <input name='user' value={value.user} onChange={handleChange} ref={inputName}/>
-                        </div>
-                        <div>
-                            <label className='label'>Contraseña</label>
-                            <input name='password' value={value.password} onChange={handleChange} ref={inputPassword}/>
-                            {value.buttonPushed && value.password.length === 0 ? <p className='warning'>Debes ingresar una contraseña</p> : <span></span>}
-                        </div>
-                        <input type='submit' value='Iniciar Sesión' onClick={startSesion}/>
+                        <Field
+                        name='user'
+                        value={value.user}
+                        onChange={handleChange}>
+                            Usuario
+                        </Field> 
+
+                        <Field
+                        name='password'
+                        value={value.password}
+                        onChange={handleChange}>
+                            Contraseña
+                        </Field>
+                        {value.buttonPushed && value.password.length === 0 ? <TextError>Debes ingresar una contraseña</TextError> : <span></span>}
+                        <Input type='submit' value='Iniciar Sesión' onClick={startSesion}/>
                     </div>
                 </div>
             </div>
