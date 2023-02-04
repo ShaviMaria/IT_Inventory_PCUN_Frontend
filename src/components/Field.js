@@ -9,7 +9,6 @@ const Field = ({ children, ...rest }) => {
             ...value,
             [e.target.name]: e.target.value
         });
-        console.log(value);
     }
 
     return(
