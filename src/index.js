@@ -4,7 +4,7 @@ import Rts from './routes/Rts';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <Rts />
-  </React.StrictMode>
+  //</React.StrictMode>
 );

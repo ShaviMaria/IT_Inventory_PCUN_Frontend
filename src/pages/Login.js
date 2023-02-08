@@ -1,6 +1,5 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import useLoginForm from '../hooks/useLoginForm';
-import useSystem_Users from '../api/useSystem_Users';
 import Input from '../components/Input';
 import Field from '../components/Field';
 import TextError from '../components/TextError';
@@ -8,8 +7,7 @@ import '../css/Login.css';
 
 const Login = () => {
     const server = 'http://localhost:4000/api';
-    const [ value, handleChange, startSesion ] = useLoginForm({ user: '', password: '', buttonPushed: false });
-    const [ userData, changeCredentials ] =  useSystem_Users({ server: server, user: '', password: ''});
+    const [ value, handleChange, manageCredentials ] = useLoginForm({ user: '', password: '', buttonPushed: false, server: server, credentialsFail: false, startingSesion: false});
 
     return(
         <div>
@@ -19,6 +17,7 @@ const Login = () => {
                     <h2>Bienvenido</h2>
 
                     <div>
+                        {value.credentialsFail ? <TextError>Usuario o Contraseña incorrectos</TextError> : console.log('credentialsFail False')}
                         <Field
                         name='user'
                         value={value.user}
@@ -35,7 +34,10 @@ const Login = () => {
                             Contraseña
                         </Field>
                         {value.buttonPushed && value.password.length === 0 ? <TextError>Debes ingresar una contraseña</TextError> : console.log(value.password.length)}
-                        <Input type='submit' value='Iniciar Sesión' onClick={startSesion}/>
+                        {value.buttonPushed && value.user.length === 0 ? <TextError>Debes ingresar un usuario</TextError> : console.log(value.password.length)}
+                        <Input type='submit' value='Iniciar Sesión' onClick={async () => {
+                            await manageCredentials({ user: value.user, password: value.password });
+                        }}/>
                     </div>
                 </div>
             </div>
