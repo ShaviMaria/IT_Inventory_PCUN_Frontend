@@ -1,12 +1,22 @@
+import { useEffect } from 'react';
+import Cookies from 'universal-cookie';
 import useLoginForm from '../hooks/useLoginForm';
 import Input from '../components/Input';
 import Field from '../components/Field';
 import TextError from '../components/TextError';
 import '../css/Login.css';
 
+const cookies = new Cookies();
+
 const Login = () => {
     const server = 'http://localhost:4000/api';
     const [ value, sValue, handleChange, manageCredentials, setSValue ] = useLoginForm({ user: '', password: '', buttonPushed: false, server: server, credentialsFail: false, startingSesion: false});
+
+    useEffect(() => {
+        if(cookies.get('Windows_User')) {
+            window.location.href = './Main';
+        }
+    }, []);
 
     const inputEvent = async e => {
         if(e.key == 'Enter') {

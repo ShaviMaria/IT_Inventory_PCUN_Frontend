@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import md5 from 'md5';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const useSystem_Users = ({ server, user, password, startingSesion }) => {
     console.log('RENDERING useSystem_Users');
@@ -36,6 +39,11 @@ const useSystem_Users = ({ server, user, password, startingSesion }) => {
                 ['credentialsFail2']: false,
                 ['buttonPushed']: false,
             });
+            cookies.set('User_Name', userData[0].Name, {path: '/'});
+            cookies.set('First_Surname', userData[0].First_Surname, {path: '/'});
+            cookies.set('Second_Surname', userData[0].Second_Surname, {path: '/'});
+            cookies.set('User_Type', userData[0].User_Type, {path: '/'});
+            cookies.set('Windows_User', userData[0].Windows_User, {path: '/'});
             window.location.href='./main';
             console.log('LOGIN OKKKK');
         }
