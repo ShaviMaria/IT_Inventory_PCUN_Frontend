@@ -1,6 +1,9 @@
 const Input = (props) => {
     return(
-        <input { ...props }/>
+        <>
+            <input { ...props }/>
+        </>
+        
     )
 }
 

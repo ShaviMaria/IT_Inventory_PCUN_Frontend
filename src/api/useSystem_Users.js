@@ -1,9 +1,16 @@
 import { useState } from 'react';
+import md5 from 'md5';
 
 const useSystem_Users = ({ server, user, password, startingSesion }) => {
     console.log('RENDERING useSystem_Users');
     const [value, setValue] = useState({ server: server, user: user, password: password, startingSesion: startingSesion, userData: undefined });
 
+    const handleValue = (property, v) => {
+        setValue({
+            ...value,
+            [property]: v
+        });
+    }
 
     const manageCredentials = async (credentials) => {
         const userData = await callSystem_Users(value.server, credentials.user, credentials.password); 
@@ -19,23 +26,22 @@ const useSystem_Users = ({ server, user, password, startingSesion }) => {
             setValue({
                 ...value,
                 ['credentialsFail']: true,
+                ['credentialsFail2']: true,
                 ['buttonPushed']: true,
             });
         } else {
             setValue({
                 ...value,
                 ['credentialsFail']: false,
+                ['credentialsFail2']: false,
                 ['buttonPushed']: false,
             });
+            window.location.href='./main';
             console.log('LOGIN OKKKK');
         }
     }
 
-    const startSesion = () => {
-        
-    }
-
-    return [ manageCredentials ];
+    return [ value, manageCredentials, handleValue ];
 }
 
 //OTHER FUNCTION
@@ -50,8 +56,9 @@ const callSystem_Users = async (server, user, password, startingSesion) => {
     console.log(`STARTINGSESION: ${startingSesion}`);
 
     if(user.length != 0 && password.length != 0) {
+        const md5Password = md5(password);
         try{
-            const response = await fetch(`${server}/System_Users/${user}/${password}`, {
+            const response = await fetch(`${server}/System_Users/${user}/${md5Password}`, {
                 //headers: {
                     //'Content-Type': 'application/json',
                 //},
