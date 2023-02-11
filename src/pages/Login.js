@@ -4,6 +4,7 @@ import useLoginForm from '../hooks/useLoginForm';
 import Input from '../components/Input';
 import Field from '../components/Field';
 import TextError from '../components/TextError';
+import Header from '../components/Header';
 import '../css/Login.css';
 
 const cookies = new Cookies();
@@ -26,6 +27,7 @@ const Login = () => {
 
     return(
         <>
+            <Header />
             <div className='login-container'>
                 <h1 className='login-tittle'>Login</h1>
                 <div className='login-box'>

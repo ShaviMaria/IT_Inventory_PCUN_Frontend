@@ -1,0 +1,29 @@
+.header {
+    height: 60px;
+    background-color: #557A95;
+    box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.header-container {
+    width: 90vw;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.melia-hotels-international-logo-container {
+    height: 50%;
+    width: 50%;
+}
+
+.mit-logo-container {
+    height: 90%;
+    width: 20%;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
